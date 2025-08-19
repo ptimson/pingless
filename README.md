@@ -9,8 +9,6 @@
   Reboot routers, restart services, or run any script when pings fail.
 </p>
 
----
-
 ## Why?
 
 I built **Pingless** because my Zyxel 5G router would occasionally stop responding to the internet.  
@@ -20,8 +18,6 @@ if it fails repeatedly, it triggers a script to fix the problem.
 While my use case is rebooting a Zyxel router, you can make it run **any script you want**.  
 For example, it could restart a container, reboot a server, or send you a notification.
 
----
-
 ## How it works
 
 - Pingless pings a host (default `8.8.8.8`) at regular intervals.
@@ -29,8 +25,6 @@ For example, it could restart a container, reboot a server, or send you a notifi
 - The script can do anything:  
   Example → Zyxel reboot script: [`scripts/zyxel-reboot-router.sh`](./scripts/zyxel-reboot-router.sh)
 - After running the script, pingless waits `CMD_WAIT_INTERVAL` before resuming pings. Useful for giving a router or service time to restart.
-
----
 
 ## Quick Start
 
@@ -84,8 +78,6 @@ services:
 
 ```
 
----
-
 ## Configuration
 
 | Env Var             | Default   | Description                                                |
@@ -100,13 +92,9 @@ services:
 > On failure, Pingless will run `/app/on-ping-fail.sh`.  
 > Mount your script into that path and make sure it’s executable (`chmod +x`).
 
----
-
 ## Example: Zyxel Router Reboot
 
 See example of how I reboot my router in `scripts/zyxel-reboot-router.sh`
-
----
 
 ## License
 
