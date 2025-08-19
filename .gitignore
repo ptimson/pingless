@@ -1,0 +1,5 @@
+.env
+/bin
+docker-compose.yml
+.idea
+on-ping-fail.sh
