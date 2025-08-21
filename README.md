@@ -1,11 +1,11 @@
 <p align="center">
-  <img src="./assets/logo.png" alt="Pingless Logo" width="200" />
+  <img src="assets/logo.png" alt="Pingless Logo" width="200" />
 </p>
 
 <h1 align="center">Pingless</h1>
 
 <p align="center">
-  <b>The scriptable ping watchdog</b><br/>
+  <b>The scriptable ping watch bot</b><br/>
   Reboot routers, restart services, or run any script when pings fail.
 </p>
 
@@ -27,20 +27,6 @@ For example, it could restart a container, reboot a server, or send you a notifi
 - After running the script, pingless waits `CMD_WAIT_INTERVAL` before resuming pings. Useful for giving a router or service time to restart.
 
 ## Quick Start
-
-### Docker Run
-
-```bash
-docker run --rm -it \
-  --cap-add=NET_RAW \                      # required for ICMP ping  
-  --env PING_HOST=8.8.8.8 \                # target to ping  
-  --env PING_INTERVAL=60s \                # how often to ping  
-  --env RETRY_DELAY=5s \                   # delay between failed retries  
-  --env MAX_FAILURES=10 \                  # how many fails before trigger
-  --env CMD_WAIT_INTERVAL=2m \             # wait time once script has executed  
-  --volume ./on-ping-fail.sh:/app/on-ping-fail.sh \
-  ptimson/pingless:latest  
-```
 
 ### Docker Compose
 
@@ -76,6 +62,20 @@ services:
       # Only add :ro if file is already executable (chmod +x)
       - ./on-ping-fail.sh:/app/on-ping-fail.sh:ro
 
+```
+
+### Docker Run
+
+```bash
+docker run --rm -it \
+  --cap-add=NET_RAW \                      # required for ICMP ping  
+  --env PING_HOST=8.8.8.8 \                # target to ping  
+  --env PING_INTERVAL=60s \                # how often to ping  
+  --env RETRY_DELAY=5s \                   # delay between failed retries  
+  --env MAX_FAILURES=10 \                  # how many fails before trigger
+  --env CMD_WAIT_INTERVAL=2m \             # wait time once script has executed  
+  --volume ./on-ping-fail.sh:/app/on-ping-fail.sh \
+  ptimson/pingless:latest  
 ```
 
 ## Configuration
